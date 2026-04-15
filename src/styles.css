@@ -620,6 +620,12 @@ select:focus-visible {
 
 /* ── Responsive ────────────────────────────────────── */
 
+@media (max-width: 768px) {
+  .todo-card:hover {
+    transform: none;
+  }
+}
+
 @media (max-width: 600px) {
   .page {
     padding: 16px;
@@ -643,12 +649,17 @@ select:focus-visible {
 
   .todo-card__status-row {
     justify-self: stretch;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
     padding: 12px 14px;
     border-radius: 16px;
+  }
+
+  [data-testid="test-todo-status-control"] {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .todo-card__actions {
@@ -667,5 +678,16 @@ select:focus-visible {
 @media (min-width: 601px) and (max-width: 768px) {
   .todo-card {
     grid-template-columns: minmax(0, 1fr) 160px;
+  }
+
+  .todo-card__status-row {
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+
+  [data-testid="test-todo-status-control"] {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 }
