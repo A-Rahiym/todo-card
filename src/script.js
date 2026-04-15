@@ -11,7 +11,6 @@ const editButton = document.querySelector('[data-testid="test-todo-edit-button"]
 const deleteButton = document.querySelector('[data-testid="test-todo-delete-button"]');
 const statusControl = document.querySelector('[data-testid="test-todo-status-control"]');
 const expandToggle = document.querySelector('[data-testid="test-todo-expand-toggle"]');
-const collapsibleSection = document.querySelector('[data-testid="test-todo-collapsible-section"]');
 const overdueIndicator = document.querySelector('[data-testid="test-todo-overdue-indicator"]');
 const editForm = document.querySelector('[data-testid="test-todo-edit-form"]');
 const editTitleInput = document.querySelector('[data-testid="test-todo-edit-title-input"]');
@@ -129,11 +128,13 @@ function updateExpandCollapse() {
   expandToggle.hidden = !shouldCollapse;
 
   if (!shouldCollapse) {
-    collapsibleSection.classList.remove('is-collapsed');
+    state.expanded = false;
+    todoDescription.classList.remove('is-collapsed');
     expandToggle.setAttribute('aria-expanded', 'true');
+    expandToggle.textContent = 'Show more';
   } else {
     const expanded = state.expanded;
-    collapsibleSection.classList.toggle('is-collapsed', !expanded);
+    todoDescription.classList.toggle('is-collapsed', !expanded);
     expandToggle.setAttribute('aria-expanded', String(expanded));
     expandToggle.textContent = expanded ? 'Show less' : 'Show more';
   }
@@ -235,5 +236,4 @@ saveButton.addEventListener('click', () => {
 deleteButton.addEventListener('click', () => {
   alert('Delete clicked');
 });
-
 renderView();

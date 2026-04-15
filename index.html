@@ -45,7 +45,11 @@
         </h2>
 
         <!-- Description (short, no collapse needed by default) -->
-        <p class="todo-card__description" data-testid="test-todo-description">
+        <p
+          id="todo-description-text"
+          class="todo-card__description"
+          data-testid="test-todo-description"
+        >
           Review backlog priorities, estimate effort, and draft the planning deck for Monday.
         </p>
 
@@ -55,19 +59,12 @@
             type="button"
             data-testid="test-todo-expand-toggle"
             aria-expanded="false"
-            aria-controls="todo-collapsible"
+            aria-controls="todo-description-text"
             hidden
           >
             Show more
           </button>
         </div>
-
-        <!-- Collapsible extended content -->
-        <div
-          id="todo-collapsible"
-          data-testid="test-todo-collapsible-section"
-          aria-label="Extended task details"
-        ></div>
 
         <!-- Meta: due date + time remaining + overdue -->
         <div class="todo-card__meta">
@@ -178,20 +175,5 @@
 
       </article>
     </main>
-
-    <!-- Visually hidden utility -->
-    <style>
-      .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0,0,0,0);
-        white-space: nowrap;
-        border: 0;
-      }
-    </style>
   </body>
 </html>
