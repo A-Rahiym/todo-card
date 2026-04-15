@@ -35,6 +35,13 @@ let state = {
 let savedState = null;
 let timerInterval = null;
 
+function cloneState(source) {
+  return {
+    ...source,
+    dueDate: new Date(source.dueDate.getTime()),
+  };
+}
+
 function formatDueDateDisplay(date) {
   return new Intl.DateTimeFormat('en-US', {
     month: 'short',
@@ -206,14 +213,17 @@ expandToggle.addEventListener('click', () => {
 });
 
 editButton.addEventListener('click', () => {
-  savedState = { ...state };
+  savedState = cloneState(state);
   state.editing = true;
   renderEditMode();
 });
 
 cancelButton.addEventListener('click', () => {
-  state = { ...savedState };
+  if (savedState) {
+    state = cloneState(savedState);
+  }
   state.editing = false;
+  savedState = null;
   renderView();
   editButton.focus();
 });
@@ -228,6 +238,7 @@ saveButton.addEventListener('click', () => {
   state.dueDate = parsedDate;
   state.editing = false;
   state.expanded = false;
+  savedState = null;
 
   renderView();
   editButton.focus();
