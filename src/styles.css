@@ -117,6 +117,13 @@ body {
   box-shadow: 0 14px 38px rgba(42, 52, 57, 0.08);
 }
 
+/* Linux dropdown alignment patch: freeze card transform while status select is active */
+.todo-card:has([data-testid="test-todo-status-control"]:focus),
+.todo-card:has([data-testid="test-todo-status-control"]:active),
+.todo-card:has(.todo-card__status-row:focus-within) {
+  transform: none;
+}
+
 .todo-card::before {
   content: "";
   position: absolute;
@@ -396,6 +403,9 @@ body {
   width: 100%;
   cursor: pointer;
   font-family: "Inter", sans-serif;
+  -webkit-appearance: menulist;
+  appearance: auto;
+  line-height: 1.2;
 }
 
 [data-testid="test-todo-status-control"]:focus-visible {
